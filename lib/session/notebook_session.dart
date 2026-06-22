@@ -252,7 +252,7 @@ class NotebookSession {
     } on vms.RPCError catch (e) {
       errors.add(KernelError(
         name: "CompileError",
-        message: e.message ?? "Compilation or syntax error during reload",
+        message: e.message,
       ));
     } catch (e, stack) {
       errors.add(KernelError(

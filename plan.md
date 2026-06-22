@@ -175,9 +175,9 @@ dartlab-kernel/
 │
 ├── test/
 │
-├── examples/
+├── example/
 │
-├── docs/
+├── doc/
 │
 └── README.md
 ```

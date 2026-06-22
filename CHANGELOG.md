@@ -24,13 +24,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Execution Queue**: Created `ExecutionQueue` to guarantee sequential, ordered cell execution in a FIFO manner per session.
 - **Interrupt & State Recovery**: Implemented stateful subprocess re-spawning under `NotebookSession.restart()` which terminates runaway execution loops (e.g. `while (true) {}`) while retaining the session's cumulative declarations in the synthesizer.
 - **Event-Driven State Engine**: Integrated status events (`busy`, `idle`) to indicate runner isolate activity status cleanly without concurrent event overlap.
-- **Demo Client**: Created `examples/demo_client.dart` showing protocol exchange over stdio with the kernel.
+- **Demo Client**: Created `example/demo_client.dart` showing protocol exchange over stdio with the kernel.
 - **Protocol & Interrupt Tests**: Added integration tests in `test/protocol_test.dart` for the JSON-RPC interface, sequential cell execution, session restart/shutdown, and stateful interrupt recovery.
 
-## [0.3.0-phase3] - 2026-06-23
+## [0.3.0] - 2026-06-23
 
 ### Added
 - **Plugin System / Framework**: Created `KernelPlugin` abstract base class and `PluginManager` class supporting `initialize`, `onExecuteStart`, and `onExecuteEnd` execution hooks.
 - **Zombie Process Cleanup**: Registered `sigint` and `sigterm` signal handlers inside `KernelManager` to cleanly shut down and kill all active child JIT processes and delete temporary files on abrupt program exit.
-- **Documentation**: Generated standard `README.md` at the repository root, alongside architecture specification (`docs/architecture.md`), Mermaid-based sequence diagrams (`docs/sequence_diagrams.md`), and extensibility/packaging guidelines (`docs/extensibility.md`).
+- **Documentation**: Generated standard `README.md` at the repository root, alongside architecture specification (`doc/architecture.md`), Mermaid-based sequence diagrams (`doc/sequence_diagrams.md`), and extensibility/packaging guidelines (`doc/extensibility.md`).
 - **Tests**: Created a new test suite in `test/plugin_test.dart` to verify registration, initialization, execution hook invocation, and error isolation of the plugin framework.
+- **Package Release Preparation**: Renamed directory layout from plural `docs` and `examples` to singular `doc` and `example` to align with pub.dev layout standards.
+- **Static Warning Cleanup**: Resolved unused imports in `kernel_manager.dart` and dead null-aware expression in `notebook_session.dart`.
+- **CI/CD Pipelines**: Configured GitHub Actions CI pipeline (`dart.yml`) with automated `dart pub publish --dry-run` checks, and CD pipeline (`publish.yml`) for automated secure OIDC-based publishing to pub.dev upon tag pushes.

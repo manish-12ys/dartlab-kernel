@@ -1,8 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import '../models/kernel_message.dart';
-import '../models/execution_result.dart';
 import '../session/session_manager.dart';
 import '../execution/execution_engine.dart';
 import '../protocol/protocol.dart';

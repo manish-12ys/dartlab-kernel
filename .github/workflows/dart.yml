@@ -29,3 +29,6 @@ jobs:
 
       - name: Run tests
         run: dart test
+
+      - name: Verify pub.dev publishing configuration
+        run: dart pub publish --dry-run

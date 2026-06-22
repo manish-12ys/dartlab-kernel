@@ -39,7 +39,7 @@ dartlab-kernel/
 │   └── session/
 │       ├── notebook_session.dart # Spawns VM, hot reloads, inspects variables
 │       └── session_manager.dart  # Deduplicated session lifecycle manager
-├── examples/
+├── example/
 │   └── demo_client.dart          # Stdio JSON-RPC demo harness client
 └── test/
     ├── execution_engine_test.dart
@@ -113,7 +113,7 @@ This starts the kernel listening on standard input for JSON-RPC requests and out
 #### Running the Demo Client
 To see the protocol in action, run the demo client:
 ```bash
-dart run examples/demo_client.dart
+dart run example/demo_client.dart
 ```
 
 ---
