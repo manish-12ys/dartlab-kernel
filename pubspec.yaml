@@ -1,0 +1,17 @@
+name: dartlab_kernel
+description: A production-grade, local-first Dart JIT execution kernel for notebook applications.
+version: 0.3.0
+repository: https://github.com/dartlab-dev/dartlab-kernel
+homepage: https://github.com/dartlab-dev/dartlab-kernel
+issue_tracker: https://github.com/dartlab-dev/dartlab-kernel/issues
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  analyzer: '>=5.0.0 <14.0.0'
+  vm_service: ^15.0.0
+  path: ^1.9.0
+
+dev_dependencies:
+  test: ^1.24.0
