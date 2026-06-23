@@ -173,9 +173,22 @@ class NotebookSession {
       // 3. Trigger hot reload
       final reloadReport = await _vmService!.reloadSources(_isolateId!);
       if (!reloadReport.success!) {
+        final notices = reloadReport.json?['notices'] as List?;
+        String errMsg = "Failed to compile/reload source code";
+        if (notices != null && notices.isNotEmpty) {
+          final noticeList = notices.map((n) {
+            if (n is Map) {
+              return n['message'] as String?;
+            }
+            return null;
+          }).whereType<String>().toList();
+          if (noticeList.isNotEmpty) {
+            errMsg = noticeList.join('\n');
+          }
+        }
         errors.add(KernelError(
           name: "CompileError",
-          message: "Failed to compile/reload source code",
+          message: errMsg,
         ));
       } else {
         // 4. Evaluate execution method using the wrapper
@@ -297,9 +310,9 @@ class NotebookSession {
     await shutdown();
     await start();
   }
-
   /// Shuts down the session and cleans up resources.
   Future<void> shutdown() async {
+    _synthesizer.clear();
     try {
       _vmService?.dispose();
     } catch (_) {}

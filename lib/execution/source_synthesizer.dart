@@ -242,4 +242,15 @@ void main() async {
 
     return sb.toString();
   }
+
+  void clear() {
+    _imports.clear();
+    _classes.clear();
+    _functions.clear();
+    _enums.clear();
+    _mixins.clear();
+    _extensions.clear();
+    _typedefs.clear();
+    _variables.clear();
+  }
 }

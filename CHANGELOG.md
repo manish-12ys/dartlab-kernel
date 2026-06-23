@@ -26,6 +26,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Event-Driven State Engine**: Integrated status events (`busy`, `idle`) to indicate runner isolate activity status cleanly without concurrent event overlap.
 - **Demo Client**: Created `example/demo_client.dart` showing protocol exchange over stdio with the kernel.
 - **Protocol & Interrupt Tests**: Added integration tests in `test/protocol_test.dart` for the JSON-RPC interface, sequential cell execution, session restart/shutdown, and stateful interrupt recovery.
+## [0.3.1] - 2026-06-23
+
+### Fixed
+- Detailed Compilation Errors: Extract and return specific compilation and syntax warnings from the hot reload report notices instead of generic failures.
 
 ## [0.3.0] - 2026-06-23
 
