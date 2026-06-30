@@ -102,7 +102,11 @@ class SourceSynthesizer {
       }
 
       if (isValid) {
-        final source = decl.toSource();
+        var source = decl.toSource();
+        if (decl is FunctionDeclaration && name == 'main') {
+          name = '_userMain';
+          source = source.replaceFirst('main', '_userMain');
+        }
         cellDeclarations.add(source);
         validSpans.add((decl.offset, decl.end));
         if (targetMap != null && name != null) {
@@ -132,6 +136,17 @@ class SourceSynthesizer {
       if (chunk.isNotEmpty) {
         cellStatements.add(chunk);
       }
+    }
+
+    bool hasUserMain = false;
+    for (final decl in unit.declarations) {
+      if (decl is FunctionDeclaration && decl.name.lexeme == 'main') {
+        hasUserMain = true;
+        break;
+      }
+    }
+    if (hasUserMain) {
+      cellStatements.add('_userMain();');
     }
 
     return ParsedCell(
